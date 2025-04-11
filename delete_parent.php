@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for deleting a parent
     $parent_id = $_GET['id'] ?? null;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("DELETE FROM `Parents/Guardians` WHERE Parent_ID = ?");
@@ -31,6 +33,7 @@
     <link rel="stylesheet" href="delete_parent.css">
 </head>
 <body>
+    <!-- Delete Parent -->
     <form method="POST" class="delete-parent">
         <p>Are you sure you want to delete this parent?</p>
         <button type="submit">Delete Parent</button>

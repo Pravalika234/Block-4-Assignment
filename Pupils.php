@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -6,6 +7,7 @@
         header("Location: index.php");
     }
 
+     // Handle form submission for adding a new pupil
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pupilId = $_POST['pupil_id'];
         $pupilName = $_POST['pupil_name'];
@@ -38,12 +40,13 @@
         }
     }
 
+    // Query to fetch pupils data
     $query = "SELECT Pupils.Pupil_ID, Pupils.Name AS Pupil_Name, Pupils.Age, Pupils.Address, Pupils.Medical_Information, Classes.Class_Name, Classes.Class_ID
               FROM Pupils
               JOIN Classes_Pupils ON Pupils.Pupil_ID = Classes_Pupils.Pupil_ID
               JOIN Classes ON Classes_Pupils.Class_ID = Classes.Class_ID
               WHERE Pupils.Name LIKE ?";
-
+    
     $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $search);
@@ -62,6 +65,7 @@
     <title>St. Alphonsus Primary School</title>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li class="logo"><a href="home.php"><img src="Images/Logo.png" alt="logo"></a></li>
@@ -76,16 +80,19 @@
         </ul>
     </nav>
 
+    <!-- Pupils Section -->
     <section class="pupils-section">
         <div class="container">
             <h1>Pupils</h1>
 
+            <!-- Search Pupils -->
             <form method="GET" class="pupils-search">
                 <input type="text" name="search" placeholder="Search Pupils" 
                     value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 <button type="submit">Search</button>
             </form>
 
+            <!-- Add New Pupil -->
             <form method="POST" class="add-pupil">
                 <input type="number" name="pupil_id" placeholder="Pupil ID" required>
                 <input type="text" name="pupil_name" placeholder="Pupil Name" required>
@@ -96,6 +103,7 @@
                 <button type="submit">Add Pupil</button>
             </form>
 
+            <!-- Displaying Pupil Data -->
             <?php if ($result->num_rows > 0): ?>
             <table border="1" cellpadding="10" cellspacing="0">
                 <thead>
@@ -111,6 +119,7 @@
                 </thead>
 
                 <tbody>
+                    <!-- Fetching and displaying pupil data -->
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($row['Pupil_ID']); ?></td>
@@ -120,6 +129,7 @@
                             <td><?php echo htmlspecialchars($row['Address']); ?></td>
                             <td><?php echo htmlspecialchars($row['Medical_Information']); ?></td>
                             <td>
+                                <!-- Edit and Delete Actions -->
                                 <a href='edit_pupil.php?id=<?php echo $row['Pupil_ID']; ?>'>Edit</a> |
                                 <a href='delete_pupil.php?id=<?php echo $row['Pupil_ID']; ?>' >Delete</a>
                             </td>
@@ -135,6 +145,8 @@
 
     <br>
     <br>
+
+    <!-- Footer Section -->
     <section class="footer-section">
         <div class="footer"></div>
             <h3>Contact Us</h3>

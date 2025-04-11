@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for deleting a teacher
     $teacher_id = $_GET['id'] ?? null;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("DELETE FROM Teachers WHERE Teacher_ID = ?");
@@ -31,6 +33,7 @@
     <link rel="stylesheet" href="delete_teacher.css">
 </head>
 <body>
+    <!-- Delete Teacher -->
     <form method="POST" class="delete-teacher">
         <p>Are you sure you want to delete this teacher?</p>
         <button type="submit">Delete Teacher</button>

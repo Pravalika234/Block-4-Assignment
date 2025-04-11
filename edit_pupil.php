@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for editing a pupil
     $class_id = $_GET['id'] ?? null;
 
     if ($class_id) {
@@ -44,14 +46,15 @@
     <link rel="stylesheet" href="edit_pupil.css">
 </head>
 <body>
-        <form method="POST" class="edit-pupil">
-            <h1>Edit Pupil</h1>
-            <input type="text" name="name" value="<?php echo $class['Name']; ?>" required>
-            <input type="number" name="age" value="<?php echo $class['Age']; ?>" required>
-            <input type="text" name="address" value="<?php echo $class['Address']; ?>" required>
-            <input type="text" name="medical_info" value="<?php echo $class['Medical_Information']; ?>" required>
-            <button type="submit">Done</button>
-            <button type="button" onclick="window.location.href='Pupils.php'">Cancel</button>
-        </form>
+    <!-- Edit Pupil -->
+    <form method="POST" class="edit-pupil">
+        <h1>Edit Pupil</h1>
+        <input type="text" name="name" value="<?php echo $class['Name']; ?>" required>
+        <input type="number" name="age" value="<?php echo $class['Age']; ?>" required>
+        <input type="text" name="address" value="<?php echo $class['Address']; ?>" required>
+        <input type="text" name="medical_info" value="<?php echo $class['Medical_Information']; ?>" required>
+        <button type="submit">Done</button>
+        <button type="button" onclick="window.location.href='Pupils.php'">Cancel</button>
+    </form>
 </body>
 </html>

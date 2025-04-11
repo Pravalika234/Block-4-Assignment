@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 ?>
 
@@ -13,6 +14,7 @@
     <title>St. Alphonsus Primary School</title>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li class="logo"><a href="Home.php"><img src="Images/Logo.png" alt="logo"></a></li>
@@ -27,6 +29,7 @@
         </ul>
     </nav>
 
+    <!-- Page Section -->
     <section class="page-section">
         <div class="container">
             <h1><strong>St. Alphonsus Primary School.</strong></h1>
@@ -35,6 +38,7 @@
         </div>
     </section>
 
+    <!-- Footer Section -->
     <section class="footer-section">
         <div class="footer-content">
             <h3>Contact Us</h3>

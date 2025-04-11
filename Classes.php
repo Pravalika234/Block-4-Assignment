@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for adding a new class
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $class_id = $_POST['class_id'];
         $class_name = $_POST['class_name'];
@@ -21,10 +23,11 @@
         }
     }
 
+    // Query to fetch classes data
     $stmt = $conn->prepare("SELECT * FROM Classes");
     $stmt->execute();
     $result = $stmt->get_result();
-
+    
     $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
     $stmt = $conn->prepare("SELECT * FROM Classes WHERE Class_Name LIKE ?");
     $stmt->bind_param("s", $search);
@@ -43,6 +46,7 @@
     <title>St. Alphonsus Primary School</title>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li class="logo"><a href="home.php"><img src="Images/Logo.png" alt="logo"></a></li>
@@ -57,6 +61,7 @@
         </ul>
     </nav>
 
+    <!-- Classes Section -->
     <section class="classes-section">
         <div class="container">
             <h1>Classes</h1>
@@ -87,6 +92,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Fetching and displaying classes data -->
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['Class_ID']); ?></td>
@@ -94,6 +100,7 @@
                                 <td><?php echo htmlspecialchars($row['Capacity']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Teacher_ID']); ?></td>
                                 <td>
+                                    <!-- Edit and Delete Actions -->
                                     <a href='edit_class.php?id=<?php echo $row['Class_ID']; ?>'>Edit</a> |
                                     <a href='delete_class.php?id=<?php echo $row['Class_ID']; ?>' >Delete</a>
                                 </td>
@@ -109,6 +116,7 @@
 
     <br>
 
+    <!-- Footer Section -->
     <section class="footer-section">
         <div class="footer"></div>
             <h3>Contact Us</h3>

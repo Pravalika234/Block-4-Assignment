@@ -30,7 +30,6 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Check if the query was successful
     if ($result === false) {
         die("Error executing query: " . $conn->error);
     }
@@ -62,17 +61,19 @@
         </ul>
     </nav>
 
-    <!-- Parents Table -->
+    <!-- Parents Section -->
     <section class="parents-section">
         <div class="container">
             <h1>Parents</h1>
 
+            <!-- Search Parents -->
             <form method="GET" class="parents-search">
                 <input type="text" name="search" placeholder="Search Parents" 
                     value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 <button type="submit">Search</button>
             </form>
 
+            <!-- Add New Parent -->
             <form method="POST" class="add-parent">
                 <input type="number" name="parent_id" placeholder="Parent ID" required>
                 <input type="text" name="name" placeholder="Parent Name" required>
@@ -82,6 +83,7 @@
                 <button type="submit">Add Parent</button>
             </form>
 
+            <!-- Displaying Parent Data -->
             <?php if ($result->num_rows > 0): ?>
             <table border="1" cellpadding="10" cellspacing="0">
                 <thead>
@@ -95,6 +97,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Fetching and displaying parents data -->
                     <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['Parent_ID']); ?></td>
@@ -103,6 +106,7 @@
                         <td><?php echo htmlspecialchars($row['Email']); ?></td>
                         <td><?php echo htmlspecialchars($row['Phone Number']); ?></td>
                         <td>
+                            <!-- Edit and Delete Actions -->
                             <a href="edit_parent.php?id=<?php echo $row['Parent_ID']; ?>">Edit</a> |
                             <a href="delete_parent.php?id=<?php echo $row['Parent_ID']; ?>">Delete</a>
                         </td>

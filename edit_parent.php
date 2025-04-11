@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for editing a parent
     $parent_id = $_GET['id'] ?? null;
 
     if ($parent_id) {
@@ -44,6 +46,7 @@
     <link rel="stylesheet" href="edit_parent.css">
 </head>
 <body>
+    <!-- Edit Parent -->
     <form method="POST" class="edit-parent">
         <h1>Edit Parent</h1>
         <input type="text" id="parent_name" name="parent_name" value="<?php echo $class['Name']; ?>" required>

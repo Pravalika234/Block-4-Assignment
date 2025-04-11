@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for editing a teacher
     $teacher_id = $_GET['id'] ?? null;
 
     if ($teacher_id) {
@@ -47,6 +49,7 @@
     <link rel="stylesheet" href="edit_teacher.css">
 </head>
 <body>
+    <!-- Edit Teacher -->
     <form method="POST" class="edit-teacher">
         <h1>Edit Teacher</h1>
         <input type="text" name="first_name" value="<?php echo $teacher['First_Name']; ?>" required>

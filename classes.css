@@ -95,10 +95,6 @@ li a:hover {
     transition: color 0.3s ease;
 }
 
-.icons2 i:hover {
-    color: #FFD700;
-}
-
 /* Logout Button */
 .logout-btn {
     margin-left: auto;

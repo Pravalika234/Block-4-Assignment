@@ -1,7 +1,7 @@
 <?php
-    $host = "localhost"; // Change if not using localhost
-    $username = "root";  // Default XAMPP user
-    $password = "";      // Default is empty in XAMPP
+    $host = "localhost";
+    $username = "root";
+    $password = "";
     $database = "Alphonsus_Primary_School"; // Database name
 
     // Create connection

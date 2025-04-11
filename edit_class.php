@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for editing a class
     $class_id = $_GET['id'] ?? null;
 
     if ($class_id) {
@@ -43,6 +45,7 @@
     <link rel="stylesheet" href="edit_class.css">
 </head>
 <body>
+    <!-- Edit Class -->
     <form method="POST" class="edit-class">
         <h1>Edit Class</h1>
         <input type="text" name="class_name" value="<?php echo $class['Class_Name']; ?>" required>

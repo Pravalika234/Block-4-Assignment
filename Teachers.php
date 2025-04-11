@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php'; 
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for adding a new teacher
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $teacher_id = $_POST['teacher_id'];
         $first_name = $_POST['first_name'];
@@ -27,6 +29,7 @@
         }
     }
 
+    // Query to fetch teachers data
     $stmt = $conn->prepare("SELECT * FROM Teachers");
     $stmt->execute();
     $result = $stmt->get_result();
@@ -49,6 +52,7 @@
     <title>St. Alphonsus Primary School</title>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li class="logo"><a href="home.php"><img src="Images/Logo.png" alt="logo"></a></li>
@@ -63,6 +67,7 @@
         </ul>
     </nav>
 
+    <!-- Teachers Section -->
     <section class="teachers-section">
         <div class="container">
             <h1>Teachers</h1>
@@ -101,6 +106,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Fetching and displaying teachers data -->
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['Teacher_ID']); ?></td>
@@ -112,6 +118,7 @@
                                 <td><?php echo htmlspecialchars($row['Salary']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Background Check']); ?></td>
                                 <td>
+                                    <!-- Edit and Delete Actions -->
                                     <a href='edit_teacher.php?id=<?php echo $row['Teacher_ID']; ?>'>Edit</a> |
                                     <a href='delete_teacher.php?id=<?php echo $row['Teacher_ID']; ?>' >Delete</a>
                                 </td>
@@ -127,6 +134,8 @@
 
     <br>
     <br>
+
+    <!-- Footer Section -->
     <section class="footer-section">
         <div class="footer"></div>
             <h3>Contact Us</h3>

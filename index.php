@@ -1,4 +1,5 @@
 <?php
+    // Database connection
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -14,6 +15,7 @@
 
     session_start();
 
+    // Check if the user is already logged in
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
         $username = $_POST['username'];
@@ -26,6 +28,7 @@
         $stmt->bind_result($raw_password);
         $stmt->fetch();
 
+        // Check if the username exists and the password matches
         if ($stmt->num_rows > 0 && $password == $raw_password) {
                 $_SESSION['username'] = $username; 
                 header("Location: Home.php");
@@ -50,6 +53,8 @@
 <body>
     <img src="Images/Logo.png" alt="logo">
     <h1>Login Form</h1>
+
+    <!-- Login Form -->
     <form method="POST">
         <label for="username">Username:</label>
         <input type="text" name="username" required>

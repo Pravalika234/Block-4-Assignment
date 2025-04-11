@@ -1,4 +1,5 @@
 <?php
+    // Connecting to the database
     include 'db_connect.php';
 
     session_start();
@@ -7,6 +8,7 @@
         exit();
     }
 
+    // Handle form submission for deleting a pupil
     $pupil_id = $_GET['id'] ?? null;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->autocommit(false);
@@ -39,6 +41,7 @@
     <link rel="stylesheet" href="delete_pupil.css">
 </head>
 <body>
+    <!-- Delete Pupil -->
     <form method="POST" class="delete-pupil">
         <p>Are you sure you want to delete this pupil?</p>
         <button type="submit">Delete Pupil</button>

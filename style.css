@@ -63,6 +63,7 @@ li a:hover {
     border-radius: 5px;
 }
 
+/* Page Section */
 .page-section {
     margin: 80px auto;
     padding: 40px;
@@ -96,6 +97,7 @@ li a:hover {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Footer Section */
 .footer-section {
     background-color: #003f80;
     color: white;
@@ -127,10 +129,7 @@ li a:hover {
     transition: color 0.3s ease;
 }
 
-.icons2 i:hover {
-    color: #FFD700;
-}
-
+/* Logout Button */
 .logout-btn {
     margin-left: auto;
     margin-right: 20px;
